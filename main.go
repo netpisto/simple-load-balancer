@@ -76,7 +76,7 @@ type LoadBalancer struct {
 func main(){
 	hosts := []string{}
 	for true {
-		fmt.Print("enter addresse to forward to : ")
+		fmt.Print("enter addresse to forward to (private or public): ")
 		var addr string
 		fmt.Scanln(&addr)
 		if addr == ""{
@@ -98,6 +98,6 @@ func main(){
 	res,_ := http.Get("https://ip4.seeip.org/")
 	iodata,_:= ioutil.ReadAll(res.Body)
 	ip := string(iodata)
-	log.Println("serving at "+ip+":"+lb.port)
+	log.Println("serving at "+ip+"|0.0.0.0|localhost"+":"+lb.port)
 	server.ListenAndServe()
 }
